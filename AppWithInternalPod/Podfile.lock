@@ -1,0 +1,16 @@
+PODS:
+  - InternalPod (0.1.0)
+
+DEPENDENCIES:
+  - InternalPod (from `InternalPod/`)
+
+EXTERNAL SOURCES:
+  InternalPod:
+    :path: InternalPod/
+
+SPEC CHECKSUMS:
+  InternalPod: 6c25dd2d44a76cb1b349b4694da89b773b8e6005
+
+PODFILE CHECKSUM: 3c5c876b369ef0b36860b65f7f1142c32f433e2e
+
+COCOAPODS: 1.11.3

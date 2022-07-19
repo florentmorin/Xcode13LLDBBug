@@ -1,0 +1,6 @@
+framework module InternalPod {
+  umbrella header "InternalPod-umbrella.h"
+
+  export *
+  module * { export * }
+}

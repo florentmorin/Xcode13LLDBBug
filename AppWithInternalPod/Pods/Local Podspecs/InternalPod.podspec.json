@@ -1,0 +1,22 @@
+{
+  "name": "InternalPod",
+  "version": "0.1.0",
+  "summary": "A short description of InternalPod.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/florentmorin/InternalPod",
+  "license": {
+    "type": "INTERNAL",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Florent Morin": "florentmorin@example.com"
+  },
+  "source": {
+    "git": "https://github.com/florentmorin/InternalPod.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "InternalPod/Classes/**/*"
+}

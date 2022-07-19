@@ -1,0 +1,14 @@
+source 'https://cdn.cocoapods.org/'
+
+project 'App/App.xcodeproj'
+workspace 'AppWithInternalPod.xcworkspace'
+
+platform :ios, '15.0'
+
+install! 'cocoapods', :warn_for_unused_master_specs_repo => false
+
+target 'App' do
+  use_frameworks! linkage: :static
+
+  pod 'InternalPod', path: 'InternalPod/'
+end
