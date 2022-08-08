@@ -1,6 +1,6 @@
 # Static framework + LLDB bug with Xcode 13.3 & 13.4
 
-Since Xcode 13.3 and before Xcode 14 beta, a strange bug appears when trying to use a static framework with LLDB or when using CocoaPods with frameworks and static linkage.
+Since Xcode 13.3 and before Xcode 14 beta, a strange bug appears when trying to use a static framework / library with LLDB or when using CocoaPods with frameworks and static linkage.
 
 When using a simple LLDB command like `po <something>` on framework code, this message appears in debugging console:
 
@@ -11,7 +11,7 @@ error: Couldn't realize type of self.
 
 ## Reproduce the bug
 
-The project can be tested by opening `AppWithInternalFramework/AppWithInternalFramework.xcworkspace` and `AppWithInternalPod/AppWithInternalPod.xcworkspace`.
+The project can be tested by opening `AppWithInternalFramework/AppWithInternalFramework.xcworkspace`, `AppWithInternalStaticLibrary/AppWithInternalStaticLibrary.xcworkspace` and `AppWithInternalPod/AppWithInternalPod.xcworkspace`.
 
 If you run the app on a simulator, a shared breakpoint will be triggered.
 
