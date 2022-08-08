@@ -15,6 +15,49 @@ The project can be tested by opening `AppWithInternalFramework/AppWithInternalFr
 
 If you run the app on a simulator, a shared breakpoint will be triggered.
 
+### In command line
+
+In a Terminal:
+
+```sh
+cd ./CommandLineApp
+./compile.sh
+
+```
+
+In another Terminal:
+
+```sh
+lldb
+```
+
+In LLDB:
+
+```lldb
+(lldb) process attach -n 'app' --waitfor
+```
+
+
+Then, in first Terminal:
+
+```sh
+./build/app
+```
+
+Back to LLDB, once detected:
+
+```lldb
+(lldb) breakpoint set -f Hello.swift -l 18
+(lldb) continue
+```
+
+Wait for breakpoint to be called...
+
+```lldb
+(lldb) po name
+```
+
+
 ## Tests results
 
 | Xcode version | Result |
