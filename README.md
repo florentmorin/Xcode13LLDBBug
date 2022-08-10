@@ -15,7 +15,7 @@ The project can be tested by opening `AppWithInternalFramework/AppWithInternalFr
 
 If you run the app on a simulator, a shared breakpoint will be triggered.
 
-### In command line
+### In command line (hotfixed)
 
 In a Terminal:
 
@@ -56,6 +56,10 @@ Wait for breakpoint to be called...
 ```lldb
 (lldb) po name
 ```
+
+#### The hotfix
+
+I had to append `-add_ast_path "${LIB_BUILD_PATH}/Hello.swiftmodule"` with Xcode 13.4.1. (not required with Xcode 13.2.1 or Xcode 14+)
 
 
 ## Tests results
