@@ -13,6 +13,8 @@ error: Couldn't realize type of self.
 
 The project can be tested by opening `AppWithInternalFramework/AppWithInternalFramework.xcworkspace`, `AppWithInternalStaticLibrary/AppWithInternalStaticLibrary.xcworkspace` and `AppWithInternalPod/AppWithInternalPod.xcworkspace`.
 
+It works fine with `AppWithInternalPackage` which uses a Swift Package.
+
 If you run the app on a simulator, a shared breakpoint will be triggered.
 
 ### In command line (hotfixed)
