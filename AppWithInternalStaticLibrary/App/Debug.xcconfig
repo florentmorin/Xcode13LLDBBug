@@ -1,0 +1,16 @@
+//
+//  Debug.xcconfig
+//  App
+//
+//  Created by Florent Morin on 22/08/2022.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Xcode 13.3+
+OTHER_LDFLAGS = -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalStaticLibrary.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-$(SHALLOW_BUNDLE_TRIPLE).swiftmodule
+
+// Xcode 13.2
+OTHER_LDFLAGS[sdk=iphoneos15.2] = -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalStaticLibrary.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-ios.swiftmodule
+OTHER_LDFLAGS[sdk=iphonesimulator15.2] = -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalStaticLibrary.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-simulator.swiftmodule
