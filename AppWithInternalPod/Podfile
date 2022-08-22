@@ -12,3 +12,28 @@ target 'App' do
 
   pod 'InternalPod', path: 'InternalPod/'
 end
+
+post_integrate do |installer|
+    xcconfig_path = installer.sandbox.target_support_files_root.to_s + '/Pods-App/Pods-App.debug.xcconfig'
+
+    xcconfig_content = File.read xcconfig_path
+    xcconfig_original_ld_flags = xcconfig_content.match(/OTHER_LDFLAGS = ([^\n]+)\n/)[1]
+
+    xcconfig_new_ld_flags = <<~CONTENT
+
+    // Xcode 13.3+
+    OTHER_LDFLAGS = #{xcconfig_original_ld_flags} -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalPod/InternalPod.framework/Modules/InternalPod.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-$(SHALLOW_BUNDLE_TRIPLE).swiftmodule
+
+    // Xcode 13.2
+    OTHER_LDFLAGS[sdk=iphoneos15.2] = #{xcconfig_original_ld_flags} -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalPod/InternalPod.framework/Modules/InternalPod.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-ios.swiftmodule
+    OTHER_LDFLAGS[sdk=iphonesimulator15.2] = #{xcconfig_original_ld_flags} -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalPod/InternalPod.framework/Modules/InternalPod.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-simulator.swiftmodule
+
+    CONTENT
+
+    xcconfig_content.gsub! /OTHER_LDFLAGS = ([^\n]+)\n/, xcconfig_new_ld_flags
+
+    File.open(xcconfig_path, 'w') do |f|
+      f.puts xcconfig_content
+    end
+
+end

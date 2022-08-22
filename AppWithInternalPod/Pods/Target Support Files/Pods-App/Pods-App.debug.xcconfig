@@ -4,7 +4,14 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/InternalP
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/InternalPod/InternalPod.framework/Headers"
 LIBRARY_SEARCH_PATHS = $(inherited) "${DT_TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}" /usr/lib/swift
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "InternalPod"
+
+// Xcode 13.3+
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "InternalPod" -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalPod/InternalPod.framework/Modules/InternalPod.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-$(SHALLOW_BUNDLE_TRIPLE).swiftmodule
+
+// Xcode 13.2
+OTHER_LDFLAGS[sdk=iphoneos15.2] = $(inherited) -ObjC -framework "InternalPod" -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalPod/InternalPod.framework/Modules/InternalPod.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-ios.swiftmodule
+OTHER_LDFLAGS[sdk=iphonesimulator15.2] = $(inherited) -ObjC -framework "InternalPod" -Wl,-add_ast_path,$(TARGET_BUILD_DIR)/InternalPod/InternalPod.framework/Modules/InternalPod.swiftmodule/$(NATIVE_ARCH_ACTUAL)-apple-simulator.swiftmodule
+
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
